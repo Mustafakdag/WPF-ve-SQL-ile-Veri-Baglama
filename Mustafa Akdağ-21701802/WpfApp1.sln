@@ -1,25 +1,33 @@
-﻿
-Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31105.61
-MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfApp1", "WpfApp1\WpfApp1.csproj", "{23F0C334-B855-45E8-A97F-C6A80DEFC642}"
-EndProject
-Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{23F0C334-B855-45E8-A97F-C6A80DEFC642}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{23F0C334-B855-45E8-A97F-C6A80DEFC642}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{23F0C334-B855-45E8-A97F-C6A80DEFC642}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{23F0C334-B855-45E8-A97F-C6A80DEFC642}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {AFC2A092-7A9C-4B84-A040-2EF55396F59A}
-	EndGlobalSection
-EndGlobal
+<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:datagridbindingtextbox" x:Class="datagridbindingtextbox.MainWindow"
+        Title="MUSTAFA AKDAĞ" Height="386.995" Width="540.367" Loaded="Window_Loaded" Foreground="Blue" BorderBrush="Red" OpacityMask="Red" Background="Red">
+    <Grid Margin="-9,0,-7,25" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="101*"/>
+            <ColumnDefinition Width="58*"/>
+            <ColumnDefinition Width="178*"/>
+            <ColumnDefinition Width="18*"/>
+            <ColumnDefinition Width="195*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Adı"  Margin="3.2,24,134.8,262.6" Grid.Column="1" FontWeight="Bold" AutomationProperties.IsOffscreenBehavior="Onscreen" Background="#FFFDFDFD" Grid.ColumnSpan="2" />
+        <Label Content="Soyadı"  Margin="3.2,61,134.8,226.6" Grid.Column="1" FontWeight="Bold" Background="White" Grid.ColumnSpan="2" />
+
+        <TextBox x:Name="name" Text="{Binding SelectedItem.AD, ElementName=datagridenes}"   Margin="46.6,24,121.6,270.6" Grid.Column="2" Grid.ColumnSpan="3"/>
+        <DataGrid x:Name="datagridenes" Grid.Column="0" AutoGenerateColumns="False" Margin="10,143,9.6,-13.4" Grid.ColumnSpan="5" AddingNewItem="gridName_AddingNewItem" Cursor="Arrow" SelectionChanged="datagridenes_SelectionChanged" MouseDoubleClick="datagrid_MouseDoubleClick">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="*" Binding="{Binding id}"/>
+                <DataGridTextColumn Header="AD" Width="*" Binding="{Binding name}"/>
+                <DataGridTextColumn Header="SOYAD" Width="*" Binding="{Binding surname}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <TextBox x:Name="surname" Text="{Binding SelectedItem.SOYAD, ElementName=datagridenes}" Margin="46.6,66,121.6,226.6" Grid.Column="2" Grid.ColumnSpan="3"  />
+        <Button x:Name="ekle" Content="Ekle" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Grid.ColumnSpan="2" Grid.Column="1" Margin="0.2,119,0,0" Click="ekle_Click"/>
+        <Button Content="Güncelle" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Grid.Column="2" Margin="26.6,119,0,0" Click="Button_Click"/>
+        <Button Content="Sil" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Grid.Column="2" Margin="119.6,119,0,0" Grid.ColumnSpan="2" Click="Button_Click_1"/>
+        <TextBox x:Name="idtext" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="4" Margin="9.6,115,0,0" TextChanged="idtext_TextChanged" Visibility="Hidden"/>
+
+    </Grid>
+</Window>
